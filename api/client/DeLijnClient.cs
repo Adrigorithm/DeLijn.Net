@@ -5,6 +5,12 @@ namespace DeLijn.Net.api.client;
 
 public sealed class DeLijnClient(string baseUri = "https://api.delijn.be/DLKernOpenData/v1/beta/") : BaseClient(baseUri)
 {
-    public async Task<(IReadOnlyList<Entity>, IReadOnlyList<Link>)> GetAllEntitiesAsync() =>
-        await JsonSerializer.DeserializeAsync<(IReadOnlyList<Entity>, IReadOnlyList<Link>)>(await HttpClient.GetStreamAsync(new Uri("entiteiten")));
+    public async Task<(IReadOnlyList<Entity> entities, IReadOnlyList<Link> links)> GetAllEntitiesAsync()
+    {
+        var responseBody = await JsonSerializer.DeserializeAsync<GetAllEntities>(await HttpClient.GetStreamAsync(new Uri("entiteiten")));
+        
+        return responseBody is null
+            ? throw new HttpRequestException($"Couldn't request GET {baseUri}enteiten")
+            : (responseBody.Entities, responseBody.Links);
+    }
 }
