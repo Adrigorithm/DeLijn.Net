@@ -1,7 +1,7 @@
 using System.Text.Json;
 using DeLijn.Net.entities;
 
-namespace DeLijn.Net.api.client;
+namespace DeLijn.Net.Api.Client;
 
 public sealed class DeLijnClient(string baseUri = "https://api.delijn.be/DLKernOpenData/v1/beta/") : BaseClient(baseUri)
 {

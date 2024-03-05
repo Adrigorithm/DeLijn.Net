@@ -47,4 +47,4 @@ artifacts/
 *.nuget.targets
 
 # Custom
-./secrets
+secrets

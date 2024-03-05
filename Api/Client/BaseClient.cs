@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 
-namespace DeLijn.Net.api.client;
+namespace DeLijn.Net.Api.Client;
 
 public abstract class BaseClient
 {
