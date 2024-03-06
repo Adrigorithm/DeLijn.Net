@@ -1,7 +1,10 @@
 internal static class ApiEndpoints
 {
-    private const string baseUri = "https://api.delijn.be/DLKernOpenData/v1/beta/";
+    private const string baseUri = "https://api.delijn.be/DLKernOpenData/api/v1/";
     
+    internal static string GetAPIEndpoints =>
+        $"{baseUri}api";
+
     internal static string GetAllEntities =>
         baseUri + "entiteiten";
     
@@ -32,5 +35,15 @@ internal static class ApiEndpoints
     internal static string GetAllLineColours =>
         baseUri + "kleuren";
     
-    internal static string GetTimetableOfStop(int stopId) =>
-        $"{baseUri}haltes/{entiteitnummer}/{haltenummer}/dienstregelingen[?datum]"
+    internal static string GetTimetableForStop(int entityId, int stopId, DateTime? date) =>
+        $"{baseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
+
+    /// <summary>
+    /// Look inside :wires:
+    /// </summary>
+    /// <param name="stopKeys">Something weird</param>
+    /// <param name="date"></param>
+    /// <returns></returns>
+    internal static string GetTimetableForStopkeys(string stopKeys, DateTime? date) =>
+        $"{baseUri}haltes/{stopKeys}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
+}

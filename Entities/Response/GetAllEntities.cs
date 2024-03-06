@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.entities;
 
-public record GetAllEntities(
-        [property: JsonPropertyName("entiteiten")] IReadOnlyList<Entity> Entities,
-        [property: JsonPropertyName("links")] IReadOnlyList<Link> Links
-    );
+namespace DeLijn.Net.Entities.Response;
+
+internal record GetAllEntities(
+    [property: JsonPropertyName("entiteiten")] IReadOnlyList<EntityResponse> Entiteiten,
+    [property: JsonPropertyName("links")] IReadOnlyList<Link> Links
+);

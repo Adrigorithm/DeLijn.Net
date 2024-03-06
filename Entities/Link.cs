@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.entities;
+namespace DeLijn.Net.Entities.Response;
 
-public record Link(
-        [property: JsonPropertyName("rel")] string Rel,
-        [property: JsonPropertyName("url")] string Url
-    );
+internal record Link(
+    [property: JsonPropertyName("rel")] string Rel,
+    [property: JsonPropertyName("url")] string Url
+);
