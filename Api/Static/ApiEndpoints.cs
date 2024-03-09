@@ -26,8 +26,13 @@ internal static class ApiEndpoints
     internal static string GetAllLines =>
         baseUri + "lijnen";
 
-    internal static string GetLinesByEntity(int entityId) =>
-        $"{baseUri}entiteiten/{entityId}/lijnen";
+    /// <summary>
+    /// return all lines currently or in the future valid for the requested entity
+    /// </summary>
+    /// <param name="entityId">filter by entity</param>
+    /// <param name="validOnDate">filter by a date on which all returned lines should be valid</param>
+    internal static string GetLinesByEntity(int entityId, DateOnly? validOnDate) =>
+        $"{baseUri}entiteiten/{entityId}/lijnen{(validOnDate is null ? "" : $"?geldigOp={((DateOnly)validOnDate).ToString("yyyy-MM-dd")}")}";
     
     internal static string GetLinesByMunicipality(int municipalityId) =>
         $"{baseUri}gemeenten/{municipalityId}/lijnen";
@@ -38,12 +43,6 @@ internal static class ApiEndpoints
     internal static string GetTimetableForStop(int entityId, int stopId, DateTime? date) =>
         $"{baseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
 
-    /// <summary>
-    /// Look inside :wires:
-    /// </summary>
-    /// <param name="stopKeys">Something weird</param>
-    /// <param name="date"></param>
-    /// <returns></returns>
     internal static string GetTimetableForStopkeys(string stopKeys, DateTime? date) =>
         $"{baseUri}haltes/{stopKeys}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
 }

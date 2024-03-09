@@ -6,12 +6,9 @@ public abstract class BaseClient
 {
     protected HttpClient HttpClient;
 
-    protected BaseClient(string baseUri)
+    protected BaseClient()
     {
-        HttpClient = new()
-        {
-            BaseAddress = new Uri(baseUri)
-        };
+        HttpClient = new();
 
         HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "token here");
         HttpClient.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
