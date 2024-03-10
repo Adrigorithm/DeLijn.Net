@@ -1,4 +1,5 @@
 using System.Text.Json;
+using DeLijn.Net.Api.Static;
 using DeLijn.Net.Entities;
 using DeLijn.Net.Entities.Response;
 
@@ -71,6 +72,13 @@ public sealed class DeLijnClient : BaseClient
     public async Task<IReadOnlyList<Municipality>> GetAllMunicipalitiesAsync()
     {
         var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetAllMunicipalities);
+
+        return responseBody.Municipalities;
+    }
+
+    public async Task<IReadOnlyList<DeLijnColour>> GetAllColoursAsync()
+    {
+        var responseBody = await GetAsync<ColoursResponse>(ApiEndpoints.GetAllColours);
 
         return responseBody.Municipalities;
     }
