@@ -14,6 +14,6 @@ public record Stop(
     //[property: JsonPropertyName("districtCode")] string DistrictCode,
     [property: JsonPropertyName("geoCoordinaat")] GeoCoordinate GeoCoordinate,
     [property: JsonPropertyName("halteToegankelijkheden")] IReadOnlyList<StopAccessibility> StopAccessibilities
-    //[property: JsonPropertyName("hoofdHalte")] object HoofdHalte,
-    //[property: JsonPropertyName("taal")] string Taal,
+//[property: JsonPropertyName("hoofdHalte")] object HoofdHalte,
+//[property: JsonPropertyName("taal")] string Taal,
 );

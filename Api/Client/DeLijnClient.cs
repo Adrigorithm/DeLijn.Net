@@ -12,14 +12,11 @@ public sealed class DeLijnClient : BaseClient
     /// <returns>A list of links representing endpoints</returns>
     /// <exception cref="HttpRequestException"></exception>
     [Obsolete("For matching the API endpoints. (You shouldn't use this, it has no use)", false)]
-    public async Task<IReadOnlyList<Link>> GetCoreEndpoints()
+    public async Task<IReadOnlyList<Link>> GetCoreEndpointsAsync()
     {
-        var requestUri = ApiEndpoints.GetAPIEndpoints;
-        var responseBody = await JsonSerializer.DeserializeAsync<LinksResponse>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
-        
-        return responseBody is null
-            ? throw new HttpRequestException($"Couldn't request GET {requestUri}")
-            : responseBody.Links;
+        var responseBody = await GetAsync<LinksResponse>(ApiEndpoints.GetAPIEndpoints);
+
+        return responseBody.Links;
     }
 
     /// <summary>
@@ -29,14 +26,14 @@ public sealed class DeLijnClient : BaseClient
     /// <param name="validOn">Date on which all lines should be valid, is ignored if entityId is not set</param>
     /// <returns>A list of line objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Line>> GetLinesByEntity(int? entityId, DateOnly? validOn = null)
+    public async Task<IReadOnlyList<Line>> GetLinesByEntityAsync(int? entityId, DateOnly? validOn = null)
     {
-        var requestUri = entityId is null 
-            ? ApiEndpoints.GetAllLines 
+        var requestUri = entityId is null
+            ? ApiEndpoints.GetAllLines
             : ApiEndpoints.GetLinesByEntity((int)entityId, validOn);
 
         var responseBody = await JsonSerializer.DeserializeAsync<LinesResponse>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
-        
+
         return responseBody is null
             ? throw new HttpRequestException($"Couldn't request GET {requestUri}")
             : responseBody.Lines;
@@ -47,13 +44,43 @@ public sealed class DeLijnClient : BaseClient
     /// </summary>
     /// <returns>A list of entity objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Entity>> GetAllEntities()
+    public async Task<IReadOnlyList<Entity>> GetAllEntitiesAsync()
     {
-        var requestUri = ApiEndpoints.GetAllEntities;
-        var responseBody = await JsonSerializer.DeserializeAsync<EntitiesResponse>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
+        var responseBody = await GetAsync<EntitiesResponse>(ApiEndpoints.GetAllEntities);
+
+        return responseBody.Entities;
+    }
+
+    /// <summary>
+    /// Get all lines
+    /// </summary>
+    /// <returns>A list of line objects</returns>
+    /// <exception cref="HttpRequestException"></exception>
+    public async Task<IReadOnlyList<Line>> GetAllLinesAsync()
+    {
+        var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetAllLines);
+
+        return responseBody.Lines;
+    }
+
+    /// <summary>
+    /// Get all municipalities
+    /// </summary>
+    /// <returns>A list of municipality objects</returns>
+    /// <exception cref="HttpRequestException"></exception>
+    public async Task<IReadOnlyList<Municipality>> GetAllMunicipalitiesAsync()
+    {
+        var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetAllMunicipalities);
+
+        return responseBody.Municipalities;
+    }
+
+    private async Task<T> GetAsync<T>(string requestUri)
+    {
+        var responseBody = await JsonSerializer.DeserializeAsync<T>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
 
         return responseBody is null
             ? throw new HttpRequestException($"Couldn't request GET {requestUri}")
-            : responseBody.Entities;
+            : responseBody;
     }
 }
