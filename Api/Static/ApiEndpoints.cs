@@ -42,9 +42,6 @@ internal static class ApiEndpoints
     internal static string GetLinesByMunicipality(int municipalityId) =>
         $"{BaseUri}gemeenten/{municipalityId}/lijnen";
 
-    internal static string GetAllColours =>
-        BaseUri + "kleuren";
-
     internal static string GetTimetableForStop(int entityId, int stopId, DateTime? date) =>
         $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
 

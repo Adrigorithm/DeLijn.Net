@@ -13,7 +13,7 @@ internal class ColorConverter : JsonConverter<Color>
         for (int i = 0; i < 3; i++)
         {
             reader.Read();
-            
+
             switch (i)
             {
                 case 0:
@@ -32,7 +32,5 @@ internal class ColorConverter : JsonConverter<Color>
     }
 
     public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options) =>
-        new
-        {
-        }
+        writer.WriteStringValue("");
 }
