@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.Helpers.Converters;
+namespace DeLijn.Net.Api.Helpers.Converters;
 
 internal class ShortDateConverter : JsonConverter<DateOnly>
 {

@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using DeLijn.Net.Entities.Enums;
 
-namespace DeLijn.Net.Helpers.Converters;
+namespace DeLijn.Net.Api.Helpers.Converters;
 
 internal class OperatingTypeConverter : JsonConverter<OperatingType>
 {
