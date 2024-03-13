@@ -1,4 +1,6 @@
+using System.Text.Json;
 using Delijn.Net.Api.Helpers.Attributes;
+using DeLijn.Net.Api.Helpers.Extensions;
 
 namespace DeLijn.Net.Api.Static;
 
@@ -29,7 +31,27 @@ internal static class ApiEndpoints
         $"{BaseUri}entiteiten/{entityId}/haltes";
 
     internal static string GetAllLines =>
-        BaseUri + "lijnen";
+        $"{BaseUri}lijnen";
+
+    internal static string GetAllDiversions =>
+        $"{BaseUri}omleidingen";
+
+    internal static string GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null)
+    {
+        var isParamAdded = false;
+        var endpoint = GetAllDiversions;
+
+        if (endDate is not null)
+        {
+            endpoint = $"{endpoint}?eindDatum={endDate.ToDateTimeString()}";
+            isParamAdded = true;
+        }
+
+        if (startDate is not null)
+            endpoint = $"{endpoint}{(isParamAdded ? $"&startDatum={startDate.ToDateTimeString()}" : $"?startDatum={startDate.ToDateTimeString()}")}";
+
+        return endpoint;
+    }
 
     /// <summary>
     /// return all lines currently or in the future valid for the requested entity

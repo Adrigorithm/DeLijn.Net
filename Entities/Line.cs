@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
+using DeLijn.Net.Api.Helpers.Converters;
 using DeLijn.Net.Entities.Enums;
-using DeLijn.Net.Helpers.Converters;
 
 namespace DeLijn.Net.Entities;
 
@@ -13,6 +13,6 @@ public record Line(
     [property: JsonPropertyName("publiek")] bool IsPublic,
     [property: JsonPropertyName("vervoertype")][property: JsonConverter(typeof(TransportTypeConverter))] TransportType TransportType,
     [property: JsonPropertyName("bedieningtype")][property: JsonConverter(typeof(OperatingTypeConverter))] OperatingType Bedieningtype,
-    [property: JsonPropertyName("lijnGeldigVan")][property: JsonConverter(typeof(ShortDateConverter))] string LijnGeldigVan,
-    [property: JsonPropertyName("lijnGeldigTot")][property: JsonConverter(typeof(ShortDateConverter))] string LijnGeldigTot
+    [property: JsonPropertyName("lijnGeldigVan")][property: JsonConverter(typeof(DateTimeOffsetConverter))] DateTimeOffset LijnGeldigVan,
+    [property: JsonPropertyName("lijnGeldigTot")][property: JsonConverter(typeof(DateTimeOffsetConverter))] DateTimeOffset LijnGeldigTot
 );

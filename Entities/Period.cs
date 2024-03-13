@@ -1,17 +1,21 @@
 using System.Text.Json.Serialization;
+using DeLijn.Net.Api.Helpers.Converters;
 
 namespace DeLijn.Net.Entities;
 
 public record Period
 {
     [JsonPropertyName("startDatum")]
-    public DateTime? StartDatum { get; set; }
+    [JsonConverter(typeof(DateTimeOffsetConverter))]
+    public DateTimeOffset? StartDatum { get; set; }
+
     [JsonPropertyName("eindDatum")]
-    public DateTime? EindDatum { get; set; }
+    [JsonConverter(typeof(DateTimeOffsetConverter))]
+    public DateTimeOffset? EindDatum { get; set; }
 
     [JsonIgnore]
     public TimeSpan? Duration =>
-        StartDatum is null || EindDatum is null 
+        StartDatum is null || EindDatum is null
             ? EindDatum - StartDatum
             : null;
 }

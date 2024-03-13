@@ -1,4 +1,6 @@
 using System.Text.Json;
+using Delijn.Net.Entities;
+using Delijn.Net.Entities.Response;
 using DeLijn.Net.Api.Static;
 using DeLijn.Net.Entities;
 using DeLijn.Net.Entities.Response;
@@ -76,11 +78,11 @@ public sealed class DeLijnClient : BaseClient
         return responseBody.Municipalities;
     }
 
-    public async Task<IReadOnlyList<DeLijnColour>> GetAllColoursAsync()
+    public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null)
     {
-        var responseBody = await GetAsync<ColoursResponse>(ApiEndpoints.GetAllColours);
+        var responseBody = await GetAsync<DiversionsResponse>(ApiEndpoints.GetDiversions(startDate, endDate));
 
-        return responseBody.Municipalities;
+        return (responseBody.Diversions, responseBody.Faults);
     }
 
     private async Task<T> GetAsync<T>(string requestUri)
