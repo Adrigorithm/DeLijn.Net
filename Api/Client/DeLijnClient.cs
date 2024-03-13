@@ -7,7 +7,7 @@ using DeLijn.Net.Entities.Response;
 
 namespace DeLijn.Net.Api.Client;
 
-public sealed class DeLijnClient : BaseClient
+public sealed partial class DeLijnClient : BaseClient
 {
     /// <summary>
     /// Get all core endpoints of DeLijnAPI.
@@ -64,18 +64,6 @@ public sealed class DeLijnClient : BaseClient
         var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetAllLines);
 
         return responseBody.Lines;
-    }
-
-    /// <summary>
-    /// Get all municipalities
-    /// </summary>
-    /// <returns>A list of municipality objects</returns>
-    /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Municipality>> GetAllMunicipalitiesAsync()
-    {
-        var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetAllMunicipalities);
-
-        return responseBody.Municipalities;
     }
 
     public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null)
