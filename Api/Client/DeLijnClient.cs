@@ -7,7 +7,7 @@ using DeLijn.Net.Entities.Response;
 
 namespace DeLijn.Net.Api.Client;
 
-public sealed partial class DeLijnClient : BaseClient
+public sealed partial class DeLijnClient(HttpClient? httpClient = null) : BaseClient(httpClient)
 {
     /// <summary>
     /// Get all core endpoints of DeLijnAPI.
@@ -15,9 +15,9 @@ public sealed partial class DeLijnClient : BaseClient
     /// <returns>A list of links representing endpoints</returns>
     /// <exception cref="HttpRequestException"></exception>
     [Obsolete("For matching the API endpoints. (You shouldn't use this, it has no use)", false)]
-    public async Task<IReadOnlyList<Link>> GetCoreEndpointsAsync()
+    public async Task<IReadOnlyList<Link>> GetCoreEndpointsAsync(CancellationToken? cancellationToken = null)
     {
-        var responseBody = await GetAsync<LinksResponse>(ApiEndpoints.GetAPIEndpoints);
+        var responseBody = await GetAsync<LinksResponse>(ApiEndpoints.GetAPIEndpoints, cancellationToken);
 
         return responseBody.Links;
     }
@@ -29,17 +29,15 @@ public sealed partial class DeLijnClient : BaseClient
     /// <param name="validOn">Date on which all lines should be valid, is ignored if entityId is not set</param>
     /// <returns>A list of line objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Line>> GetLinesByEntityAsync(int? entityId, DateOnly? validOn = null)
+    public async Task<IReadOnlyList<Line>> GetLinesAsync(int? entityId, DateOnly? validOn = null, CancellationToken? cancellationToken = null)
     {
         var requestUri = entityId is null
             ? ApiEndpoints.GetAllLines
             : ApiEndpoints.GetLinesByEntity((int)entityId, validOn);
 
-        var responseBody = await JsonSerializer.DeserializeAsync<LinesResponse>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
+        var responseBody = await GetAsync<LinesResponse>(requestUri, cancellationToken);
 
-        return responseBody is null
-            ? throw new HttpRequestException($"Couldn't request GET {requestUri}")
-            : responseBody.Lines;
+        return responseBody.Lines;
     }
 
     /// <summary>
@@ -47,9 +45,9 @@ public sealed partial class DeLijnClient : BaseClient
     /// </summary>
     /// <returns>A list of entity objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Entity>> GetAllEntitiesAsync()
+    public async Task<IReadOnlyList<Entity>> GetAllEntitiesAsync(CancellationToken? cancellationToken = null)
     {
-        var responseBody = await GetAsync<EntitiesResponse>(ApiEndpoints.GetAllEntities);
+        var responseBody = await GetAsync<EntitiesResponse>(ApiEndpoints.GetAllEntities, cancellationToken);
 
         return responseBody.Entities;
     }
@@ -59,23 +57,25 @@ public sealed partial class DeLijnClient : BaseClient
     /// </summary>
     /// <returns>A list of line objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Line>> GetAllLinesAsync()
+    public async Task<IReadOnlyList<Line>> GetAllLinesAsync(CancellationToken? cancellationToken)
     {
-        var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetAllLines);
+        var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetAllLines, cancellationToken);
 
         return responseBody.Lines;
     }
 
-    public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null)
+    public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversionsAsync(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null, CancellationToken? cancellationToken = null)
     {
-        var responseBody = await GetAsync<DiversionsResponse>(ApiEndpoints.GetDiversions(startDate, endDate));
+        var responseBody = await GetAsync<DiversionsResponse>(ApiEndpoints.GetDiversions(startDate, endDate), cancellationToken);
 
         return (responseBody.Diversions, responseBody.Faults);
     }
 
-    private async Task<T> GetAsync<T>(string requestUri)
+    private async Task<T> GetAsync<T>(string requestUri, CancellationToken? token)
     {
-        var responseBody = await JsonSerializer.DeserializeAsync<T>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
+        var responseBody = await JsonSerializer.DeserializeAsync<T>(token is null 
+            ? await HttpClient.GetStreamAsync(new Uri(requestUri))
+            : await HttpClient.GetStreamAsync(new Uri(requestUri), (CancellationToken)token));
 
         return responseBody is null
             ? throw new HttpRequestException($"Couldn't request GET {requestUri}")

@@ -14,21 +14,24 @@ public sealed partial class DeLijnClient : BaseClient
     /// </summary>
     /// <returns>A list of municipality objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Municipality>> GetAllMunicipalitiesAsync()
+    public async Task<IReadOnlyList<Municipality>> GetAllMunicipalitiesAsync(CancellationToken? cancellationToken = null)
     {
-        var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetAllMunicipalities);
+        var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetAllMunicipalities, cancellationToken);
 
         return responseBody.Municipalities;
     }
 
-    public async Task<IReadOnlyList<Municipality>> GetMunicipalitiesByEntityAsync(int entityId)
+    public async Task<IReadOnlyList<Municipality>> GetMunicipalitiesByEntityAsync(int entityId, CancellationToken? cancellationToken = null)
     {
-        var requestUri = ApiEndpoints.GetMunicipalitiesByEntity(entityId);
+        var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetMunicipalitiesByEntity(entityId), cancellationToken);
 
-        var responseBody = await JsonSerializer.DeserializeAsync<MunicipalitiesResponse>(await HttpClient.GetStreamAsync(new Uri(requestUri)));
+        return responseBody.Municipalities;
+    }
 
-        return responseBody is null
-            ? throw new HttpRequestException($"Couldn't request GET {requestUri}")
-            : responseBody.Municipalities;
+    public async Task<Municipality> GetMunicipalityById(int id, CancellationToken? cancellationToken = null)
+    {
+        var responseBody = await GetAsync<Municipality>(ApiEndpoints.GetMunicipalityById(id), cancellationToken);
+
+        return responseBody;
     }
 }

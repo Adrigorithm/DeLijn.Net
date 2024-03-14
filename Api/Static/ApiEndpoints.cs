@@ -20,7 +20,6 @@ internal static class ApiEndpoints
     internal static string GetMunicipalitiesByEntity(int entityId) =>
         $"{BaseUri}entiteiten/{entityId}/gemeenten";
 
-    [Useless("Doesn't actually return any stops, it exists for nothing")]
     internal static string GetAllStops =>
         BaseUri + "haltes";
 
@@ -69,4 +68,7 @@ internal static class ApiEndpoints
 
     internal static string GetTimetableForStopkeys(string stopKeys, DateTime? date) =>
         $"{BaseUri}haltes/{stopKeys}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
+
+    internal static string GetMunicipalityById(int id) =>
+        $"{BaseUri}gemeenten/{id}";
 }
