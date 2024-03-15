@@ -17,6 +17,13 @@ public sealed partial class DeLijnClient : BaseClient
         return responseBody.Stops;
     }
 
+    public async Task<IReadOnlyList<Stop>> GetStopsByMunicipalityAsync(int municipalityId, CancellationToken? cancellationToken = null)
+    {
+        var responseBody = await GetAsync<StopsResponse>(ApiEndpoints.GetStopsByMunicipality(municipalityId), cancellationToken);
+
+        return responseBody.Stops;
+    }
+
     [Useless("Doesn't actually return any stops, it exists for nothing")]
     public async Task<IReadOnlyList<Stop>> GetAllStops(CancellationToken? cancellationToken = null)
     {

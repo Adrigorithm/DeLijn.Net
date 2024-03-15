@@ -4,16 +4,21 @@ namespace DeLijn.Net.Api.Client;
 
 public abstract class BaseClient
 {
-    protected HttpClient HttpClient;
+    protected IHttpClientFactory? HttpClientFactory;
+    protected HttpClient? HttpClient;
 
-    protected BaseClient(HttpClient? httpClient)
+    protected BaseClient(IHttpClientFactory? httpClientFactory = null)
     {
-        HttpClient = httpClient ?? new();
-
-        HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "token here");
-        HttpClient.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
+        if (httpClientFactory is null)
         {
-            NoCache = true
-        };
+            HttpClient = new();
+            HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "token here");
+            HttpClient.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
+            {
+                NoCache = true
+            };
+        }
+        else
+            HttpClientFactory = httpClientFactory;
     }
 }
