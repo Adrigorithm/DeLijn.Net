@@ -42,12 +42,12 @@ internal static class ApiEndpoints
 
         if (endDate is not null)
         {
-            endpoint = $"{endpoint}?eindDatum={endDate.ToDateTimeString()}";
+            endpoint = $"{endpoint}?eindDatum={((DateTimeOffset)endDate).ToDeLijnDateTimeOffsetString(true)}";
             isParamAdded = true;
         }
 
         if (startDate is not null)
-            endpoint = $"{endpoint}{(isParamAdded ? $"&startDatum={startDate.ToDateTimeString()}" : $"?startDatum={startDate.ToDateTimeString()}")}";
+            endpoint = $"{endpoint}{(isParamAdded ? $"&startDatum={((DateTimeOffset)startDate).ToDeLijnDateTimeOffsetString(true)}" : $"?startDatum={((DateTimeOffset)startDate).ToDeLijnDateTimeOffsetString(true)}")}";
 
         return endpoint;
     }
@@ -57,17 +57,17 @@ internal static class ApiEndpoints
     /// </summary>
     /// <param name="entityId">filter by entity</param>
     /// <param name="validOnDate">filter by a date on which all returned lines should be valid</param>
-    internal static string GetLinesByEntity(int entityId, DateOnly? validOnDate) =>
-        $"{BaseUri}entiteiten/{entityId}/lijnen{(validOnDate is null ? "" : $"?geldigOp={((DateOnly)validOnDate).ToString("yyyy-MM-dd")}")}";
+    internal static string GetLinesByEntity(int entityId, DateTimeOffset? validOnDate) =>
+        $"{BaseUri}entiteiten/{entityId}/lijnen{(validOnDate is null ? "" : $"?geldigOp={((DateTimeOffset)validOnDate).ToDeLijnDateOnlyString(true)}")}";
 
     internal static string GetLinesByMunicipality(int municipalityId) =>
         $"{BaseUri}gemeenten/{municipalityId}/lijnen";
 
-    internal static string GetTimetableForStop(int entityId, int stopId, DateTime? date) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
+    internal static string GetTimetableForStop(int entityId, int stopId, DateTimeOffset? date) =>
+        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?{((DateTimeOffset)date).ToDeLijnDateOnlyString(true)}")}";
 
-    internal static string GetTimetableForStopkeys(string stopKeys, DateTime? date) =>
-        $"{BaseUri}haltes/{stopKeys}/dienstregelingen{(date is null ? "" : $"?{((DateTime)date).ToString("yyyy-MM-dd")}")}";
+    internal static string GetTimetableForStopkeys(string stopKeys, DateTimeOffset? date) =>
+        $"{BaseUri}haltes/{stopKeys}/dienstregelingen{(date is null ? "" : $"?{((DateTimeOffset)date).ToDeLijnDateOnlyString(true)}")}";
 
     internal static string GetMunicipalityById(int id) =>
         $"{BaseUri}gemeenten/{id}";
