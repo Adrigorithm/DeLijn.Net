@@ -20,8 +20,11 @@ internal static class ApiEndpoints
     internal static string GetMunicipalitiesByEntity(int entityId) =>
         $"{BaseUri}entiteiten/{entityId}/gemeenten";
 
+    internal static string GetStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
+        $"{BaseUri}haltes/{entityId}/{stopId}{(validOnDate is null ? "" : $"?geldigOp={((DateTimeOffset)validOnDate).ToDeLijnDateTimeOffsetString(true)}")}";
+
     internal static string GetAllStops =>
-        BaseUri + "haltes";
+        $"{BaseUri}haltes";
 
     internal static string GetStopsByMunicipality(int municipalityId) =>
         $"{BaseUri}gemeenten/{municipalityId}/haltes";
@@ -63,12 +66,9 @@ internal static class ApiEndpoints
     internal static string GetLinesByMunicipality(int municipalityId) =>
         $"{BaseUri}gemeenten/{municipalityId}/lijnen";
 
-    internal static string GetTimetableForStop(int entityId, int stopId, DateTimeOffset? date) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?{((DateTimeOffset)date).ToDeLijnDateOnlyString(true)}")}";
-
-    internal static string GetTimetableForStopkeys(string stopKeys, DateTimeOffset? date) =>
-        $"{BaseUri}haltes/{stopKeys}/dienstregelingen{(date is null ? "" : $"?{((DateTimeOffset)date).ToDeLijnDateOnlyString(true)}")}";
-
     internal static string GetMunicipalityById(int id) =>
         $"{BaseUri}gemeenten/{id}";
+
+    internal static string GetTimetableForStop(int entityId, int stopId, DateTimeOffset? date) =>
+        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?datum={((DateTimeOffset)date).ToDeLijnDateOnlyString(true)}")}";
 }
