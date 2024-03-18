@@ -19,5 +19,5 @@ internal class DateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
     }
 
     public override void Write(Utf8JsonWriter writer, DateTimeOffset? value, JsonSerializerOptions options) =>
-        writer.WriteStringValue(value.ToDeLijnDateTimeString());
+        throw new NotImplementedException();
 }
