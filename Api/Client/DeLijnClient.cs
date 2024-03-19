@@ -46,6 +46,13 @@ public sealed partial class DeLijnClient(IHttpClientFactory? httpClientFactory =
         return (responseBody.Diversions, responseBody.Faults);
     }
 
+    public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversionsByStopAsync(int entityId, int stopId, DateTimeOffset? date = null, CancellationToken? cancellationToken = null)
+    {
+        var responseBody = await GetAsync<DiversionsResponse>(ApiEndpoints.GetDiversionsByStop(entityId, stopId, date), cancellationToken);
+
+        return (responseBody.Diversions, responseBody.Faults);
+    }
+
     public async Task<IReadOnlyList<StopArrival>> GetTimetableForStopAsync(int entityId, int stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<ArrivalsResponse>(ApiEndpoints.GetTimetableForStop(entityId, stopId, date), cancellationToken);

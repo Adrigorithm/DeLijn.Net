@@ -17,26 +17,26 @@ internal static class ApiEndpoints
     internal static string GetAllMunicipalities =>
         $"{BaseUri}gemeenten";
 
-    internal static string GetMunicipalitiesByEntity(int entityId) =>
-        $"{BaseUri}entiteiten/{entityId}/gemeenten";
-
-    internal static string GetStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
-
     internal static string GetAllStops =>
         $"{BaseUri}haltes";
-
-    internal static string GetStopsByMunicipality(int municipalityId) =>
-        $"{BaseUri}gemeenten/{municipalityId}/haltes";
-
-    internal static string GetStopsByEntity(int entityId) =>
-        $"{BaseUri}entiteiten/{entityId}/haltes";
-
+    
+    internal static string GetAllDiversions =>
+        $"{BaseUri}omleidingen";
+    
     internal static string GetAllLines =>
         $"{BaseUri}lijnen";
 
-    internal static string GetAllDiversions =>
-        $"{BaseUri}omleidingen";
+    internal static string GetMunicipalitiesByEntity(int entityId) =>
+        $"{GetAllEntities}/{entityId}/gemeenten";
+
+    internal static string GetStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
+        $"{GetAllStops}/{entityId}/{stopId}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+
+    internal static string GetStopsByMunicipality(int municipalityId) =>
+        $"{GetAllMunicipalities}/{municipalityId}/haltes";
+
+    internal static string GetStopsByEntity(int entityId) =>
+        $"{GetAllEntities}/{entityId}/haltes";
 
     internal static string GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null) =>
         $"{GetAllDiversions}?eindDatum={endDate.ToDeLijnDateTimeOffsetString(true)}&startDatum={startDate.ToDeLijnDateTimeOffsetString(true)}";
@@ -47,25 +47,25 @@ internal static class ApiEndpoints
     /// <param name="entityId">filter by entity</param>
     /// <param name="validOnDate">filter by a date on which all returned lines should be valid</param>
     internal static string GetLinesByEntity(int entityId, DateTimeOffset? validOnDate) =>
-        $"{BaseUri}entiteiten/{entityId}/lijnen?geldigOp={validOnDate.ToDeLijnDateOnlyString(true)}";
+        $"{GetAllEntities}/{entityId}/lijnen?geldigOp={validOnDate.ToDeLijnDateOnlyString(true)}";
 
     internal static string GetLinesByMunicipality(int municipalityId) =>
-        $"{BaseUri}gemeenten/{municipalityId}/lijnen";
+        $"{GetAllMunicipalities}/{municipalityId}/lijnen";
 
     internal static string GetMunicipalityById(int id) =>
-        $"{BaseUri}gemeenten/{id}";
+        $"{GetAllMunicipalities}/{id}";
 
     internal static string GetTimetableForStop(int entityId, int stopId, DateTimeOffset? date) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen?datum={date.ToDeLijnDateOnlyString(true)}";
+        $"{GetAllStops}/{entityId}/{stopId}/dienstregelingen?datum={date.ToDeLijnDateOnlyString(true)}";
 
     internal static string GetLineDirectionsForStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}/lijnrichtingen?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+        $"{GetAllStops}/{entityId}/{stopId}/lijnrichtingen?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
     
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
+    internal static string GetDiversionsByStop(int entityId, int stopId, DateTimeOffset? date) =>
+        $"{GetAllStops}/{entityId}/{stopId}/omleidingen?datum={date.ToDeLijnDateOnlyString(true)}";
     
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
+    internal static string GetLiveDataForStop(int entityId, int stopId, int? maxResults) =>
+        $"{GetAllStops}/{entityId}/{stopId}/real-time?maxAantalDoorkomsten={maxResults?.ToString() ?? string.Empty}";
     
     // internal static string GetAllLines =>
     //     $"{BaseUri}lijnen";
