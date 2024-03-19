@@ -10,8 +10,8 @@ internal static class DateTimeOffsetExtensions
         return dateTimeOffset is DateTimeOffset offsetNotNull
             ? shouldBeConverted
                 ? offsetNotNull.ToDeLijnDateTimeOffset().ToString("yyyy-MM-ddTHH:mm:ss")
-                : ((DateTimeOffset)dateTimeOffset).ToString("yyyy-MM-ddTHH:mm:ss")
-            : string.Empty; 
+                : offsetNotNull.ToString("yyyy-MM-ddTHH:mm:ss")
+            : string.Empty;
     }
 
     public static DateTimeOffset ToDeLijnDateTimeOffset(this DateTimeOffset dateTimeOffset) =>
