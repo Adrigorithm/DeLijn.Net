@@ -46,11 +46,18 @@ public sealed partial class DeLijnClient(IHttpClientFactory? httpClientFactory =
         return (responseBody.Diversions, responseBody.Faults);
     }
 
-    public async Task<IReadOnlyList<StopArrival>> GetTimetableForStop(int entityId, int stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<StopArrival>> GetTimetableForStopAsync(int entityId, int stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<ArrivalsResponse>(ApiEndpoints.GetTimetableForStop(entityId, stopId, date), cancellationToken);
 
         return responseBody.StopArrivals;
+    }
+
+    public async Task<IReadOnlyList<LineDirection>> GetLineDirectionsForStopAsync(int entityId, int stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
+    {
+        var responseBody = await GetAsync<LineDirectionsResponse>(ApiEndpoints.GetLineDirectionsForStop(entityId, stopId, date), cancellationToken);
+
+        return responseBody.LineDirections;
     }
 
     private async Task<T> GetAsync<T>(string requestUri, CancellationToken? token)

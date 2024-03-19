@@ -5,16 +5,24 @@ namespace DeLijn.Net.Api.Helpers.Extensions;
 /// </summary>
 internal static class DateTimeOffsetExtensions
 {
-    public static string ToDeLijnDateTimeOffsetString(this DateTimeOffset dateTimeOffset, bool shouldBeConverted = false) =>
-        shouldBeConverted
-            ? dateTimeOffset.ToDeLijnDateTimeOffset().ToString("yyyy-MM-ddTHH:mm:ss")
-            : dateTimeOffset.ToString("yyyy-MM-ddTHH:mm:ss");
+    public static string ToDeLijnDateTimeOffsetString(this DateTimeOffset? dateTimeOffset, bool shouldBeConverted = false)
+    {
+        return dateTimeOffset is DateTimeOffset offsetNotNull
+            ? shouldBeConverted
+                ? offsetNotNull.ToDeLijnDateTimeOffset().ToString("yyyy-MM-ddTHH:mm:ss")
+                : ((DateTimeOffset)dateTimeOffset).ToString("yyyy-MM-ddTHH:mm:ss")
+            : string.Empty; 
+    }
 
     public static DateTimeOffset ToDeLijnDateTimeOffset(this DateTimeOffset dateTimeOffset) =>
         TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTimeOffset, "Central European Standard Time");
 
-    public static string ToDeLijnDateOnlyString(this DateTimeOffset dateTimeOffset, bool shouldBeConverted = false) => 
-        shouldBeConverted
-            ? dateTimeOffset.ToDeLijnDateTimeOffset().ToString("yyyy-MM-dd")
-            : dateTimeOffset.ToString("yyyy-MM-dd");
+    public static string ToDeLijnDateOnlyString(this DateTimeOffset? dateTimeOffset, bool shouldBeConverted = false)
+    {
+        return dateTimeOffset is DateTimeOffset offsetNotNull
+            ? shouldBeConverted
+                ? offsetNotNull.ToDeLijnDateTimeOffset().ToString("yyyy-MM-dd")
+                : offsetNotNull.ToString("yyyy-MM-dd")
+            : string.Empty;
+    }
 }

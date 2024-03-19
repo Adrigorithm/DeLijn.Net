@@ -12,16 +12,16 @@ internal static class ApiEndpoints
         $"{BaseUri}api";
 
     internal static string GetAllEntities =>
-        BaseUri + "entiteiten";
+        $"{BaseUri}entiteiten";
 
     internal static string GetAllMunicipalities =>
-        BaseUri + "gemeenten";
+        $"{BaseUri}gemeenten";
 
     internal static string GetMunicipalitiesByEntity(int entityId) =>
         $"{BaseUri}entiteiten/{entityId}/gemeenten";
 
     internal static string GetStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}{(validOnDate is null ? "" : $"?geldigOp={((DateTimeOffset)validOnDate).ToDeLijnDateTimeOffsetString(true)}")}";
+        $"{BaseUri}haltes/{entityId}/{stopId}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
 
     internal static string GetAllStops =>
         $"{BaseUri}haltes";
@@ -38,22 +38,8 @@ internal static class ApiEndpoints
     internal static string GetAllDiversions =>
         $"{BaseUri}omleidingen";
 
-    internal static string GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null)
-    {
-        var isParamAdded = false;
-        var endpoint = GetAllDiversions;
-
-        if (endDate is not null)
-        {
-            endpoint = $"{endpoint}?eindDatum={((DateTimeOffset)endDate).ToDeLijnDateTimeOffsetString(true)}";
-            isParamAdded = true;
-        }
-
-        if (startDate is not null)
-            endpoint = $"{endpoint}{(isParamAdded ? $"&startDatum={((DateTimeOffset)startDate).ToDeLijnDateTimeOffsetString(true)}" : $"?startDatum={((DateTimeOffset)startDate).ToDeLijnDateTimeOffsetString(true)}")}";
-
-        return endpoint;
-    }
+    internal static string GetDiversions(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null) =>
+        $"{GetAllDiversions}?eindDatum={endDate.ToDeLijnDateTimeOffsetString(true)}&startDatum={startDate.ToDeLijnDateTimeOffsetString(true)}";
 
     /// <summary>
     /// return all lines currently or in the future valid for the requested entity
@@ -61,7 +47,7 @@ internal static class ApiEndpoints
     /// <param name="entityId">filter by entity</param>
     /// <param name="validOnDate">filter by a date on which all returned lines should be valid</param>
     internal static string GetLinesByEntity(int entityId, DateTimeOffset? validOnDate) =>
-        $"{BaseUri}entiteiten/{entityId}/lijnen{(validOnDate is null ? "" : $"?geldigOp={((DateTimeOffset)validOnDate).ToDeLijnDateOnlyString(true)}")}";
+        $"{BaseUri}entiteiten/{entityId}/lijnen?geldigOp={validOnDate.ToDeLijnDateOnlyString(true)}";
 
     internal static string GetLinesByMunicipality(int municipalityId) =>
         $"{BaseUri}gemeenten/{municipalityId}/lijnen";
@@ -70,5 +56,57 @@ internal static class ApiEndpoints
         $"{BaseUri}gemeenten/{id}";
 
     internal static string GetTimetableForStop(int entityId, int stopId, DateTimeOffset? date) =>
-        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen{(date is null ? "" : $"?datum={((DateTimeOffset)date).ToDeLijnDateOnlyString(true)}")}";
+        $"{BaseUri}haltes/{entityId}/{stopId}/dienstregelingen?datum={date.ToDeLijnDateOnlyString(true)}";
+
+    internal static string GetLineDirectionsForStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
+        $"{BaseUri}haltes/{entityId}/{stopId}/lijnrichtingen?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
+    // internal static string GetAllLines =>
+    //     $"{BaseUri}lijnen";
+    
 }
