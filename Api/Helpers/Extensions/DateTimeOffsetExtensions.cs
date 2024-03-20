@@ -5,7 +5,7 @@ namespace DeLijn.Net.Api.Helpers.Extensions;
 /// </summary>
 internal static class DateTimeOffsetExtensions
 {
-    public static string ToDeLijnDateTimeOffsetString(this DateTimeOffset? dateTimeOffset, bool shouldBeConverted = false)
+    internal static string ToDeLijnDateTimeOffsetString(this DateTimeOffset? dateTimeOffset, bool shouldBeConverted = false)
     {
         return dateTimeOffset is DateTimeOffset offsetNotNull
             ? shouldBeConverted
@@ -14,10 +14,10 @@ internal static class DateTimeOffsetExtensions
             : string.Empty;
     }
 
-    public static DateTimeOffset ToDeLijnDateTimeOffset(this DateTimeOffset dateTimeOffset) =>
+    internal static DateTimeOffset ToDeLijnDateTimeOffset(this DateTimeOffset dateTimeOffset) =>
         TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTimeOffset, "Central European Standard Time");
 
-    public static string ToDeLijnDateOnlyString(this DateTimeOffset? dateTimeOffset, bool shouldBeConverted = false)
+    internal static string ToDeLijnDateOnlyString(this DateTimeOffset? dateTimeOffset, bool shouldBeConverted = false)
     {
         return dateTimeOffset is DateTimeOffset offsetNotNull
             ? shouldBeConverted

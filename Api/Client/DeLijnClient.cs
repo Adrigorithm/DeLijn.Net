@@ -67,6 +67,20 @@ public sealed partial class DeLijnClient(IHttpClientFactory? httpClientFactory =
         return responseBody.LineDirections;
     }
 
+    public async Task<IReadOnlyList<StopPoint>> GetStopPointsNearCoordinate(GeoCoordinate coordinate, int? maxResults, int? radius, CancellationToken? cancellationToken = null)
+    {
+        var responseBody = await GetAsync<StopPointsResponse>(ApiEndpoints.GetStopPointsNearCoordinate(coordinate, maxResults, radius), cancellationToken);
+
+        return responseBody.StopPoints;
+    }
+
+    public async Task<IReadOnlyList<Stop>> GetStopsBulkAsync(int[] stopIds, DateTimeOffset? validOnDate, CancellationToken? cancellationToken = null)
+    {
+        var responseBody = await GetAsync<StopsResponse>(ApiEndpoints.GetStopsByKeys(stopIds, validOnDate), cancellationToken);
+
+        return responseBody.Stops;
+    }
+
     private async Task<T> GetAsync<T>(string requestUri, CancellationToken? token)
     {
         var httpClient = HttpClient;

@@ -1,8 +1,15 @@
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.Entities.Response;
+namespace DeLijn.Net.Entities;
 
-public record GeoCoordinate(
-    [property: JsonPropertyName("latitude")] double Latitude,
-    [property: JsonPropertyName("longitude")] double Longitude
-);
+public record GeoCoordinate
+{
+    [JsonPropertyName("latitude")]
+    public double Latitude { get; set; }
+
+    [JsonPropertyName("longitude")]
+    public double Longitude { get; set; }
+
+    public override string ToString() =>
+        $"{Latitude},{Longitude}";
+}

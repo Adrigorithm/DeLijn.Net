@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Delijn.Net.Api.Helpers.Attributes;
 using DeLijn.Net.Api.Helpers.Extensions;
+using DeLijn.Net.Entities;
 
 namespace DeLijn.Net.Api.Static;
 
@@ -65,16 +66,16 @@ internal static class ApiEndpoints
         $"{GetAllStops}/{entityId}/{stopId}/omleidingen?datum={date.ToDeLijnDateOnlyString(true)}";
     
     internal static string GetLiveDataForStop(int entityId, int stopId, int? maxResults) =>
-        $"{GetAllStops}/{entityId}/{stopId}/real-time?maxAantalDoorkomsten={maxResults?.ToString() ?? string.Empty}";
+        $"{GetAllStops}/{entityId}/{stopId}/real-time?maxAantalDoorkomsten={maxResults}";
     
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
+    internal static string GetDisruptionsByStop(int entityId, int stopId, DateTimeOffset? date) =>
+        $"{GetAllStops}/{entityId}/{stopId}/storingen?datum={date.ToDeLijnDateOnlyString(true)}";
     
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
+    internal static string GetStopPointsNearCoordinate(GeoCoordinate coordinate, int? maxResults, int? radius) =>
+        $"{GetAllStops}/indebuurt/{coordinate}?maxAantalHaltes={maxResults}&radius={radius}";
     
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
+    internal static string GetStopsByKeys(int[] stopIds, DateTimeOffset? validOnDate) =>
+        $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
     
     // internal static string GetAllLines =>
     //     $"{BaseUri}lijnen";
