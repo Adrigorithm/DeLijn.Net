@@ -74,7 +74,7 @@ internal static class ApiEndpoints
     internal static string GetStopPointsNearCoordinate(GeoCoordinate coordinate, int? maxResults, int? radius) =>
         $"{GetAllStops}/indebuurt/{coordinate}?maxAantalHaltes={maxResults}&radius={radius}";
     
-    internal static string GetStopsByKeys(int[] stopIds, DateTimeOffset? validOnDate) =>
+    internal static string GetStopsByKeys(IEnumerable<int> stopIds, DateTimeOffset? validOnDate) =>
         $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
     
     // internal static string GetAllLines =>

@@ -2,6 +2,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using Delijn.Net.Entities;
 using Delijn.Net.Entities.Response;
+using DeLijn.Net.Api.Client.Config;
 using DeLijn.Net.Api.Static;
 using DeLijn.Net.Entities;
 using DeLijn.Net.Entities.Response;
@@ -12,7 +13,7 @@ namespace DeLijn.Net.Api.Client;
 /// Create a REST client to make DeLijnAPI calls.
 /// </summary>
 /// <param name="httpClientFactory">Use the DI container to inject this or leave null to allow the client to create a HttpClient singleton</param>
-public sealed partial class DeLijnClient(IHttpClientFactory? httpClientFactory = null) : BaseClient(httpClientFactory)
+public sealed partial class DeLijnClient(DeLijnConfig _config, IHttpClientFactory? httpClientFactory = null) : BaseClient(_config, httpClientFactory)
 {
     /// <summary>
     /// Get all core endpoints of DeLijnAPI.
@@ -74,7 +75,7 @@ public sealed partial class DeLijnClient(IHttpClientFactory? httpClientFactory =
         return responseBody.StopPoints;
     }
 
-    public async Task<IReadOnlyList<Stop>> GetStopsBulkAsync(int[] stopIds, DateTimeOffset? validOnDate, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<Stop>> GetStopsBulkAsync(IEnumerable<int> stopIds, DateTimeOffset? validOnDate, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<StopsResponse>(ApiEndpoints.GetStopsByKeys(stopIds, validOnDate), cancellationToken);
 
