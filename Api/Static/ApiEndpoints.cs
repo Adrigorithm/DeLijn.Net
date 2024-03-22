@@ -20,12 +20,15 @@ internal static class ApiEndpoints
 
     internal static string GetAllStops =>
         $"{BaseUri}haltes";
-    
+
     internal static string GetAllDiversions =>
         $"{BaseUri}omleidingen";
-    
+
     internal static string GetAllLines =>
         $"{BaseUri}lijnen";
+
+    internal static string GetAllColours =>
+        $"{BaseUri}kleuren";
 
     internal static string GetMunicipalitiesByEntity(int entityId) =>
         $"{GetAllEntities}/{entityId}/gemeenten";
@@ -61,53 +64,53 @@ internal static class ApiEndpoints
 
     internal static string GetLineDirectionsForStop(int entityId, int stopId, DateTimeOffset? validOnDate) =>
         $"{GetAllStops}/{entityId}/{stopId}/lijnrichtingen?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
-    
+
     internal static string GetDiversionsByStop(int entityId, int stopId, DateTimeOffset? date) =>
         $"{GetAllStops}/{entityId}/{stopId}/omleidingen?datum={date.ToDeLijnDateOnlyString(true)}";
-    
+
     internal static string GetLiveDataForStop(int entityId, int stopId, int? maxResults) =>
         $"{GetAllStops}/{entityId}/{stopId}/real-time?maxAantalDoorkomsten={maxResults}";
-    
+
     internal static string GetDisruptionsByStop(int entityId, int stopId, DateTimeOffset? date) =>
         $"{GetAllStops}/{entityId}/{stopId}/storingen?datum={date.ToDeLijnDateOnlyString(true)}";
-    
+
     internal static string GetStopPointsNearCoordinate(GeoCoordinate coordinate, int? maxResults, int? radius) =>
         $"{GetAllStops}/indebuurt/{coordinate}?maxAantalHaltes={maxResults}&radius={radius}";
-    
+
     internal static string GetStopsByKeys(IEnumerable<int> stopIds, DateTimeOffset? validOnDate) =>
         $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
-    
+
+    internal static string GetTimetableForStopKeys(IEnumerable<int> stopIds, DateTimeOffset? date) =>
+        $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}/dienstregelingen?datum={date.ToDeLijnDateOnlyString(true)}";
+
+    internal static string GetLineDirectionForStopKeys(IEnumerable<int> stopIds, DateTimeOffset? validOnDate) =>
+        $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}?lijnrichtingen?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+
+    internal static string GetDiversionsForStopKeys(IEnumerable<int> stopIds, DateTimeOffset? validOnDate) =>
+        $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}/omleidingen?datum={validOnDate.ToDeLijnDateOnlyString(true)}";
+
+    internal static string GetRealTimeForStopKeys(IEnumerable<int> stopIds, int? maxResults) =>
+        $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}/real-time?maxAantalDoorkomsten={maxResults}";
+
+    internal static string GetDisruptionsForStopKeys(IEnumerable<int> stopIds, DateTimeOffset? validOnDate) =>
+        $"{GetAllStops}/lijst/{stopIds.ToStopIdUrlParamList()}/storingen?datum={validOnDate.ToDeLijnDateOnlyString(true)}";
+
+    internal static string GetColourByCode(string code) =>
+        $"{GetAllColours}/{code}";
+
+    internal static string GetLineById(int entityId, int lineId, DateTimeOffset? validOnDate) =>
+        $"{GetAllLines}/{entityId}/{lineId}?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+
+    internal static string GetMunicipalitiesServedByLine(int entityId, int lineId, DateTimeOffset? validOnDate) =>
+        $"{GetAllLines}/{entityId}/{lineId}/gemeenten?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+
+    internal static string GetColoursForLine(int entityId, int lineId, DateTimeOffset? validOnDate) =>
+        $"{GetAllLines}/{entityId}/{lineId}/lijnkleuren?geldigOp={validOnDate.ToDeLijnDateTimeOffsetString(true)}";
+
     // internal static string GetAllLines =>
     //     $"{BaseUri}lijnen";
-    
+
     // internal static string GetAllLines =>
     //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
-    // internal static string GetAllLines =>
-    //     $"{BaseUri}lijnen";
-    
+
 }

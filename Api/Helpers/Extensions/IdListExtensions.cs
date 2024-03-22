@@ -11,7 +11,7 @@ internal static class IdListExtensions
 
         var urlParamBuilder = new StringBuilder();
         urlParamBuilder.Append($"1_{stopIds.First()}");
-        
+
         for (int i = 1; i < stopIds.Count(); i++)
             urlParamBuilder.Append($"_1_{stopIds.ElementAt(i)}");
 
