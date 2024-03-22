@@ -6,9 +6,10 @@ A C# DeLijn API library for dotnet core 8, featuring automatic ratelimiting, cac
 
 ## Installation
 
-Not yet, soon!
+You will need to use [dotnet 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) to use this library.
 
-[Import from nuget.org](https://www.nuget.org/packages/DSharpPlus/)
+
+[Import from nuget.org](https://www.nuget.org/packages/DeLijn.Net/)
 
 ```
   dotnet add package DeLijn.Net
