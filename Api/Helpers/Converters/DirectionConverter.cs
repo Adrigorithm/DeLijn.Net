@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using DeLijn.Net.Entities.Enums;
+using DeLijn.Net.Entities.Enums.Strinfigier;
 
 namespace DeLijn.Net.Api.Helpers.Converters;
 
@@ -11,14 +12,9 @@ internal class DirectionConverter : JsonConverter<Direction>
         {
             "HEEN" => Direction.To,
             "TERUG" => Direction.Back,
-            _ => throw new NotImplementedException()
+            _ => Direction.Unknown
         };
 
     public override void Write(Utf8JsonWriter writer, Direction value, JsonSerializerOptions options) =>
-        writer.WriteStringValue(value switch
-        {
-            Direction.To => "TERUG",
-            Direction.Back => "HEEN",
-            _ => throw new NotImplementedException()
-        });
+        writer.WriteStringValue(value.ToTranslatedString());
 }

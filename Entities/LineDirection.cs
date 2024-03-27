@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using DeLijn.Net.Api.Helpers.Converters;
+using DeLijn.Net.Entities.Enums;
 
 namespace DeLijn.Net.Entities;
 
@@ -9,6 +10,6 @@ namespace DeLijn.Net.Entities;
 public record LineDirection(
     [property: JsonPropertyName("entiteitnummer")] int EntityId,
     [property: JsonPropertyName("lijnnummer")] int LineId,
-    [property: JsonPropertyName("richting")][property: JsonConverter(typeof(DirectionConverter))] LineDirection Direction,
+    [property: JsonPropertyName("richting")][property: JsonConverter(typeof(DirectionConverter))] Direction Direction,
     [property: JsonPropertyName("omschrijving")] string Description
 );
