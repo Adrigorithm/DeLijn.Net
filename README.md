@@ -20,9 +20,9 @@ You will need to use [dotnet 8](https://dotnet.microsoft.com/en-us/download/dotn
 Soon™
 
 ## Todo
-[ ] Port to .net9
-[ ] Add tests
-[ ] Cover all endpoints
+- [ ] Port to .net9
+- [ ] Add tests
+- [ ] Cover all endpoints
 
 
 ## FAQ
