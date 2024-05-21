@@ -23,6 +23,7 @@ Soon™
 - [ ] Port to .net9
 - [ ] Add tests
 - [ ] Cover all endpoints
+- [ ] Use .NET Aspire
 
 
 ## FAQ
