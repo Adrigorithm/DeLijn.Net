@@ -1,0 +1,97 @@
+{
+    "haltes": [
+        {
+            "entiteitnummer": "2",
+            "haltenummer": "201302",
+            "omschrijving": "Koerspleinstraat",
+            "omschrijvingLang": "Sint-Amandsberg Koerspleinstraat",
+            "gemeentenummer": 4616,
+            "omschrijvingGemeente": "Sint-amandsberg",
+            "geoCoordinaat": {
+                "latitude": 51.066005,
+                "longitude": 3.767723
+            },
+            "halteToegankelijkheden": [
+                "MOTORISCH_MET_ASSIST"
+            ],
+            "hoofdHalte": null,
+            "taal": "?",
+            "links": [
+                {
+                    "rel": "lijnrichtingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/2/201302/lijnrichtingen"
+                },
+                {
+                    "rel": "real-time",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/2/201302/real-time"
+                },
+                {
+                    "rel": "dienstregelingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/2/201302/dienstregelingen"
+                },
+                {
+                    "rel": "omleidingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/2/201302/omleidingen"
+                },
+                {
+                    "rel": "storingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/2/201302/storingen"
+                },
+                {
+                    "rel": "gemeenten",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/gemeenten/4616"
+                }
+            ]
+        },
+        {
+            "entiteitnummer": "4",
+            "haltenummer": "403041",
+            "omschrijving": "Dusartplein",
+            "omschrijvingLang": "Hasselt Dusartplein",
+            "gemeentenummer": 1825,
+            "omschrijvingGemeente": "Hasselt",
+            "geoCoordinaat": {
+                "latitude": 50.932742,
+                "longitude": 5.343296
+            },
+            "halteToegankelijkheden": [
+                "MOTORISCH_MET_ASSIST",
+                "VISUELE_BEPERKING"
+            ],
+            "hoofdHalte": null,
+            "taal": "?",
+            "links": [
+                {
+                    "rel": "lijnrichtingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/4/403041/lijnrichtingen"
+                },
+                {
+                    "rel": "real-time",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/4/403041/real-time"
+                },
+                {
+                    "rel": "dienstregelingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/4/403041/dienstregelingen"
+                },
+                {
+                    "rel": "omleidingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/4/403041/omleidingen"
+                },
+                {
+                    "rel": "storingen",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/4/403041/storingen"
+                },
+                {
+                    "rel": "gemeenten",
+                    "url": "https://api.delijn.be/DLKernOpenData/api/v1/gemeenten/1825"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "rel": "self",
+            "url": "https://api.delijn.be/DLKernOpenData/api/v1/haltes/lijst/1_403041_1_201302"
+        }
+    ]
+}

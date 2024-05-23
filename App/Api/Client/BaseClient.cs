@@ -16,7 +16,7 @@ public abstract class BaseClient
         if (httpClientFactory is null)
         {
             HttpClient = new();
-            HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "token here");
+            HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", deLijnConfig!.DeLijnPrimaryKey);
             HttpClient.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
             {
                 NoCache = true
