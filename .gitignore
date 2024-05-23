@@ -48,5 +48,5 @@ artifacts/
 
 # Custom
 secrets
-result
+result.json
 cmd
