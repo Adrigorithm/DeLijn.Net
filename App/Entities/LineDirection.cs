@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Api.Helpers.Converters;
-using DeLijn.Net.Entities.Enums;
+using DeLijn.Net.App.Api.Helpers.Converters;
+using DeLijn.Net.App.Entities.Enums;
 
-namespace DeLijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 /// <summary>
 /// In theory there should be a lot more properties according to the documentation but the API doesn't expose these so they are not included for now.

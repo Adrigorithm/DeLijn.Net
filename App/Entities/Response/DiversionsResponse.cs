@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Entities.Response;
+using DeLijn.Net.App.Entities.Response;
 
-namespace Delijn.Net.Entities.Response;
+namespace DeLijn.Net.App.Entities.Response;
 
 internal record DiversionsResponse(
     [property: JsonPropertyName("omleidingen")] IReadOnlyList<Diversion> Diversions,

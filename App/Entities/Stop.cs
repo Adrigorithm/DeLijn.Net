@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Entities.Enums;
-using DeLijn.Net.Entities.Response;
+using DeLijn.Net.App.Entities.Enums;
+using DeLijn.Net.App.Entities.Response;
 
-namespace DeLijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record Stop(
     [property: JsonPropertyName("entiteitnummer")] int EntityId,

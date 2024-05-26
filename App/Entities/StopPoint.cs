@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Entities;
+using DeLijn.Net.App.Entities;
 
-namespace Delijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record StopPoint(
     [property: JsonPropertyName("type")] string CompanyName,

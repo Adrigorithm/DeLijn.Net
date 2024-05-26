@@ -1,4 +1,4 @@
-namespace DeLijn.Net.Entities.Enums;
+namespace DeLijn.Net.App.Entities.Enums;
 
 public enum StopAccessibility
 {

@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Entities;
-using DeLijn.Net.Entities.Enums;
+using DeLijn.Net.App.Entities;
+using DeLijn.Net.App.Entities.Enums;
 
-namespace Delijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record Diversion(
     [property: JsonPropertyName("titel")] string Titel,

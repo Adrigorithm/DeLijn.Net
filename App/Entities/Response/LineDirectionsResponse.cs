@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Entities;
-using DeLijn.Net.Entities.Response;
+using DeLijn.Net.App.Entities;
+using DeLijn.Net.App.Entities.Response;
 
-namespace Delijn.Net.Entities.Response;
+namespace DeLijn.Net.App.Entities.Response;
 
 internal record LineDirectionsResponse(
     [property: JsonPropertyName("lijnrichtingen")] IReadOnlyList<LineDirection> LineDirections,

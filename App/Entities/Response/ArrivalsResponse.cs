@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Delijn.Net.Entities;
+using DeLijn.Net.App.Entities;
 
-namespace DeLijn.Net.Entities.Response;
+namespace DeLijn.Net.App.Entities.Response;
 
 internal record ArrivalsResponse(
     [property: JsonPropertyName("halteDoorkomsten")] IReadOnlyList<StopArrival> StopArrivals,

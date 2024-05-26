@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.Entities.Response;
+namespace DeLijn.Net.App.Entities.Response;
 
 internal record MunicipalitiesResponse(
     [property: JsonPropertyName("gemeenten")] IReadOnlyList<Municipality> Municipalities,

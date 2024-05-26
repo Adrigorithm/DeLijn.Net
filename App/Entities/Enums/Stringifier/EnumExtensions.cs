@@ -1,4 +1,4 @@
-namespace DeLijn.Net.Entities.Enums.Strinfigier;
+namespace DeLijn.Net.App.Entities.Enums.Strinfigier;
 
 public static class EnumExtensions
 {

@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Api.Helpers.Converters;
+using DeLijn.Net.App.Api.Helpers.Converters;
 
-namespace DeLijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record Period
 {

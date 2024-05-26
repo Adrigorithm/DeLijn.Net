@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.Api.Helpers.Converters;
-using DeLijn.Net.Entities.Enums;
+using DeLijn.Net.App.Api.Helpers.Converters;
+using DeLijn.Net.App.Entities.Enums;
 
-namespace DeLijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record Arrival(
     [property: JsonPropertyName("entiteitnummer")] int EntityId,

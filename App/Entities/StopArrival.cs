@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record StopArrival(
     [property: JsonPropertyName("haltenummer")] int StopId,
