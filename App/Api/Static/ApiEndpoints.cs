@@ -1,11 +1,11 @@
 using System.Text.Json;
-using Delijn.Net.Api.Helpers.Attributes;
-using DeLijn.Net.Api.Helpers.Extensions;
-using DeLijn.Net.Entities;
-using DeLijn.Net.Entities.Enums;
-using DeLijn.Net.Entities.Enums.Strinfigier;
+using DeLijn.Net.App.Api.Helpers.Attributes;
+using DeLijn.Net.App.Api.Helpers.Extensions;
+using DeLijn.Net.App.Entities;
+using DeLijn.Net.App.Entities.Enums;
+using DeLijn.Net.App.Entities.Enums.Strinfigier;
 
-namespace DeLijn.Net.Api.Static;
+namespace DeLijn.Net.App.Api.Static;
 
 internal static class ApiEndpoints
 {
@@ -122,15 +122,15 @@ internal static class ApiEndpoints
         $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/haltes?geldigOp={date.ToDeLijnDateTimeOffsetString(true)}";
 
     internal static string GetDiversionsForLineDirection(int entityId, int lineId, Direction lineDirection, DateTimeOffset? date) =>
-        $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/omleidingen?datum={date.ToDeLijnDateOnlyString(true)}"; 
+        $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/omleidingen?datum={date.ToDeLijnDateOnlyString(true)}";
 
     internal static string GetRealTimeForLineDirection(int entityId, int lineId, Direction lineDirection) =>
         $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/real-time";
 
     internal static string GetDrivesForLineDirection(int entityId, int lineId, Direction lineDirection, int driveId, DateTimeOffset? date) =>
-        $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/rit/{driveId}?datum={date.ToDeLijnDateOnlyString(true)}"; 
+        $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/rit/{driveId}?datum={date.ToDeLijnDateOnlyString(true)}";
 
     internal static string GetDisruptionsForLineDirection(int entityId, int lineId, Direction lineDirection, int driveId, DateTimeOffset? date) =>
         $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/storingen?datum={date.ToDeLijnDateOnlyString(true)}";
-        
+
 }

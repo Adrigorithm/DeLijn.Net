@@ -1,4 +1,4 @@
-namespace Delijn.Net.Api.Helpers.Attributes;
+namespace DeLijn.Net.App.Api.Helpers.Attributes;
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property)]
 internal sealed class UselessAttribute(string reason) : Attribute

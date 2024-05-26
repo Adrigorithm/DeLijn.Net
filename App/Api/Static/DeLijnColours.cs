@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace DeLijn.Net.Api.Static;
+namespace DeLijn.Net.App.Api.Static;
 
 public static class DeLijnColours
 {

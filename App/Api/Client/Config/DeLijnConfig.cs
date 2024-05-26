@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace DeLijn.Net.Api.Client.Config;
+namespace DeLijn.Net.App.Api.Client.Config;
 
 public class DeLijnConfig
 {

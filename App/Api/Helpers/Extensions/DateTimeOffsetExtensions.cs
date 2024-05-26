@@ -1,4 +1,4 @@
-namespace DeLijn.Net.Api.Helpers.Extensions;
+namespace DeLijn.Net.App.Api.Helpers.Extensions;
 
 /// <summary>
 /// Utility class to convert DateTimeOffsets to formats used by DeLijnAPI

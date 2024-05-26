@@ -1,12 +1,12 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
-using Delijn.Net.Entities;
-using Delijn.Net.Entities.Response;
-using DeLijn.Net.Api.Static;
-using DeLijn.Net.Entities;
-using DeLijn.Net.Entities.Response;
+using DeLijn.Net.App.Entities;
+using DeLijn.Net.App.Entities.Response;
+using DeLijn.Net.App.Api.Static;
+using DeLijn.Net.App.Api.Client;
+using DeLijn.Net.App.Entities.Response;
 
-namespace DeLijn.Net.Api.Client;
+namespace DeLijn.Net.App.Api.Client;
 
 /// <summary>
 /// Create a REST client to make DeLijnAPI calls.

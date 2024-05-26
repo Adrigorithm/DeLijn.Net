@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DeLijn.Net.Api.Helpers.Extensions;
+namespace DeLijn.Net.App.Api.Helpers.Extensions;
 
 internal static class IdListExtensions
 {

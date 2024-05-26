@@ -1,3 +1,4 @@
+namespace DeLijn.Net.App.Api.Client.Abstractions;
 
 internal class RateLimitter
 {
@@ -25,7 +26,7 @@ internal class RateLimitter
 
         if (lastDay - now >= TimeSpan.FromDays(1))
             ResetDay(now);
-        
+
         if (lastMinute - now >= TimeSpan.FromMinutes(1))
             ResetMinute(now);
     }

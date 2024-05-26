@@ -2,10 +2,11 @@ using System.Text.Json;
 using Delijn.Net.Entities;
 using Delijn.Net.Entities.Response;
 using DeLijn.Net.Api.Static;
+using DeLijn.Net.App.Api.Client;
 using DeLijn.Net.Entities;
 using DeLijn.Net.Entities.Response;
 
-namespace DeLijn.Net.Api.Client;
+namespace DeLijn.Net.App.Api.Client;
 
 public sealed partial class DeLijnClient : BaseClient
 {

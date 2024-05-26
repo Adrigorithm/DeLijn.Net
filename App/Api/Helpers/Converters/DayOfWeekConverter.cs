@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.Api.Helpers.Converters;
+namespace DeLijn.Net.App.Api.Helpers.Converters;
 
 internal class DayOfWeekConverter : JsonConverter<DayOfWeek>
 {

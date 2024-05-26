@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DeLijn.Net.Api.Helpers.Extensions;
+using DeLijn.Net.App.Api.Helpers.Extensions;
 
-namespace DeLijn.Net.Api.Helpers.Converters;
+namespace DeLijn.Net.App.Api.Helpers.Converters;
 
 internal class DateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
 {

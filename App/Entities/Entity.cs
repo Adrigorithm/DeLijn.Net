@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace DeLijn.Net.Entities;
+namespace DeLijn.Net.App.Entities;
 
 public record Entity(
     [property: JsonPropertyName("entiteitnummer")] int Id,

@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DeLijn.Net.Entities.Enums;
+using DeLijn.Net.App.Entities.Enums;
 
-namespace DeLijn.Net.Api.Helpers.Converters;
+namespace DeLijn.Net.App.Api.Helpers.Converters;
 
 internal class TransportTypeConverter : JsonConverter<TransportType>
 {
