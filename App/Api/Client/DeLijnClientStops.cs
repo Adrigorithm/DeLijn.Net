@@ -1,10 +1,7 @@
-using System.Text.Json;
 using DeLijn.Net.App.Api.Helpers.Attributes;
 using DeLijn.Net.App.Entities;
 using DeLijn.Net.App.Entities.Response;
 using DeLijn.Net.App.Api.Static;
-using DeLijn.Net.App.Api.Client;
-using DeLijn.Net.App.Entities.Response;
 
 namespace DeLijn.Net.App.Api.Client;
 
