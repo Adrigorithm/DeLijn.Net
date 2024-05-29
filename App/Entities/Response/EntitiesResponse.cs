@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using DeLijn.Net.App.Entities;
 
 namespace DeLijn.Net.App.Entities.Response;
 

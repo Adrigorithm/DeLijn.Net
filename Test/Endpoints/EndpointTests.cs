@@ -1,7 +1,6 @@
 using DeLijn.Net.App.Api.Client;
 using DeLijn.Net.App.Api.Client.Config;
 using DeLijn.Net.App.Entities;
-using Microsoft.VisualBasic;
 
 namespace DeLijn.Net.Test.Endpoints;
 
