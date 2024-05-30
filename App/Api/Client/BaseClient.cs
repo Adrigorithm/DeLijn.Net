@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using DeLijn.Net.App.Api.Client.Config;
+using Microsoft.Extensions.Logging;
 
 namespace DeLijn.Net.App.Api.Client;
 
@@ -8,10 +9,12 @@ public abstract class BaseClient
     protected IHttpClientFactory? HttpClientFactory;
     protected HttpClient? HttpClient;
     protected DeLijnConfig? ClientConfig;
+    protected LogLevel LogLevel;
 
-    protected BaseClient(DeLijnConfig? deLijnConfig, IHttpClientFactory? httpClientFactory = null)
+    protected BaseClient(DeLijnConfig? deLijnConfig, IHttpClientFactory? httpClientFactory = null, LogLevel logLevel = LogLevel.Debug)
     {
         ClientConfig = deLijnConfig;
+        LogLevel = logLevel;
 
         if (httpClientFactory is null)
         {
