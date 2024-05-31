@@ -12,7 +12,7 @@ namespace DeLijn.Net.App.Api.Client;
 /// Create a REST client to make DeLijnAPI calls.
 /// </summary>
 /// <param name="httpClientFactory">Use the DI container to inject this or leave null to allow the client to create a HttpClient singleton</param>
-public sealed partial class DeLijnClient(DeLijnConfig _config, IHttpClientFactory? httpClientFactory = null, LogLevel logLevel = LogLevel.Debug) : BaseClient(_config, httpClientFactory, logLevel)
+public sealed partial class DeLijnClient(DeLijnConfig _config, IHttpClientFactory? httpClientFactory = null) : BaseClient(_config, httpClientFactory)
 {
     /// <summary>
     /// Get all core endpoints of DeLijnAPI.
@@ -108,9 +108,6 @@ public sealed partial class DeLijnClient(DeLijnConfig _config, IHttpClientFactor
 
         using StreamReader sr = new(stream);
         var json = await sr.ReadToEndAsync();
-
-        if (LogLevel is LogLevel.Debug)
-            Console.WriteLine($"\n\n=== GET {requestUri} ===\n{json}");
 
         var responseBody = JsonSerializer.Deserialize<T>(json);
 

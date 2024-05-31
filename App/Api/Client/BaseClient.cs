@@ -9,12 +9,10 @@ public abstract class BaseClient
     protected IHttpClientFactory? HttpClientFactory;
     protected HttpClient? HttpClient;
     protected DeLijnConfig? ClientConfig;
-    protected LogLevel LogLevel;
 
-    protected BaseClient(DeLijnConfig? deLijnConfig, IHttpClientFactory? httpClientFactory = null, LogLevel logLevel = LogLevel.Debug)
+    protected BaseClient(DeLijnConfig? deLijnConfig, IHttpClientFactory? httpClientFactory = null)
     {
         ClientConfig = deLijnConfig;
-        LogLevel = logLevel;
 
         if (httpClientFactory is null)
         {
