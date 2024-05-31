@@ -5,8 +5,8 @@ using DeLijn.Net.App.Entities.Enums;
 namespace DeLijn.Net.App.Entities;
 
 public record Line(
-    [property: JsonPropertyName("entiteitnummer")][property: JsonConverter(typeof(StringIdConverter))] int EntityId,
-    [property: JsonPropertyName("lijnnummer")][property: JsonConverter(typeof(StringIdConverter))] int Id,
+    [property: JsonPropertyName("entiteitnummer")][property: JsonConverter(typeof(StringIdConverter))] short EntityId,
+    [property: JsonPropertyName("lijnnummer")][property: JsonConverter(typeof(StringIdConverter))] short Id,
     [property: JsonPropertyName("lijnnummerPubliek")] string DisplayId,
     [property: JsonPropertyName("omschrijving")] string Description,
     [property: JsonPropertyName("vervoerRegioCode")] string TransportAreaCode,

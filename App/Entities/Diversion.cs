@@ -11,7 +11,7 @@ public record Diversion(
     [property: JsonPropertyName("periode")] Period Period,
     [property: JsonPropertyName("lijnrichtingen")] IReadOnlyList<LineDirection> Lijnrichtingen,
     [property: JsonPropertyName("haltes")] IReadOnlyList<Stop> Stops,
-    [property: JsonPropertyName("referentieOmleiding")][property: JsonConverter(typeof(StringIdConverter))] int? ReferentieOmleiding,
+    [property: JsonPropertyName("referentieOmleiding")][property: JsonConverter(typeof(StringIdConverter))] short? ReferentieOmleiding,
     [property: JsonPropertyName("type")] string Type,
     [property: JsonPropertyName("omleidingsDagen")] IReadOnlyList<DayOfWeek> OmleidingsDagen
 );

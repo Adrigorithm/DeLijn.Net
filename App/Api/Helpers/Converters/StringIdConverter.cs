@@ -3,11 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace DeLijn.Net.App.Api.Helpers.Converters;
 
-internal class StringIdConverter : JsonConverter<int>
+internal class StringIdConverter : JsonConverter<short>
 {
-    public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
+    public override short Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
         Convert.ToInt16(reader.GetString());
 
-    public override void Write(Utf8JsonWriter writer, int value, JsonSerializerOptions options) =>
+    public override void Write(Utf8JsonWriter writer, short value, JsonSerializerOptions options) =>
         writer.WriteStringValue(value.ToString());
 }
