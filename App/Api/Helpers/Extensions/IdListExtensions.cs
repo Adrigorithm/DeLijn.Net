@@ -4,7 +4,7 @@ namespace DeLijn.Net.App.Api.Helpers.Extensions;
 
 internal static class IdListExtensions
 {
-    internal static string ToStopIdUrlParamList(this IEnumerable<int> stopIds)
+    internal static string ToStopIdUrlParamList(this IEnumerable<short> stopIds)
     {
         if (stopIds.Count() == 0)
             return string.Empty;

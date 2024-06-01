@@ -46,42 +46,42 @@ public sealed partial class DeLijnClient(DeLijnConfig _config, IHttpClientFactor
         return (responseBody.Diversions, responseBody.Faults);
     }
 
-    public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversionsByStopAsync(int entityId, int stopId, DateTimeOffset? date = null, CancellationToken? cancellationToken = null)
+    public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversionsByStopAsync(short entityId, short stopId, DateTimeOffset? date = null, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<DiversionsResponse>(ApiEndpoints.GetDiversionsByStop(entityId, stopId, date), cancellationToken);
 
         return (responseBody.Diversions, responseBody.Faults);
     }
 
-    public async Task<(IReadOnlyList<StopArrival> stopArrivals, IReadOnlyList<Note> arrivalNotes, IReadOnlyList<Note> rideNotes, IReadOnlyList<Note> diversions)> GetTimetableForStopAsync(int entityId, int stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
+    public async Task<(IReadOnlyList<StopArrival> stopArrivals, IReadOnlyList<Note> arrivalNotes, IReadOnlyList<Note> rideNotes, IReadOnlyList<Note> diversions)> GetTimetableForStopAsync(short entityId, short stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<ArrivalsResponse>(ApiEndpoints.GetTimetableForStop(entityId, stopId, date), cancellationToken);
 
         return (responseBody.StopArrivals, responseBody.ArrivalNotes, responseBody.RideNotes, responseBody.Diversions);
     }
 
-    public async Task<IReadOnlyList<LineDirection>> GetLineDirectionsForStopAsync(int entityId, int stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<LineDirection>> GetLineDirectionsForStopAsync(short entityId, short stopId, DateTimeOffset? date, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<LineDirectionsResponse>(ApiEndpoints.GetLineDirectionsForStop(entityId, stopId, date), cancellationToken);
 
         return responseBody.LineDirections;
     }
 
-    public async Task<IReadOnlyList<StopPoint>> GetStopPointsNearCoordinateAsync(GeoCoordinate coordinate, int? maxResults, int? radius, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<StopPoint>> GetStopPointsNearCoordinateAsync(GeoCoordinate coordinate, short? maxResults, short? radius, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<StopPointsResponse>(ApiEndpoints.GetStopPointsNearCoordinate(coordinate, maxResults, radius), cancellationToken);
 
         return responseBody.StopPoints;
     }
 
-    public async Task<IReadOnlyList<Stop>> GetStopsBulkAsync(IEnumerable<int> stopIds, DateTimeOffset? validOnDate, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<Stop>> GetStopsBulkAsync(IEnumerable<short> stopIds, DateTimeOffset? validOnDate, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<StopsResponse>(ApiEndpoints.GetStopsByKeys(stopIds, validOnDate), cancellationToken);
 
         return responseBody.Stops;
     }
 
-    public async Task<(IReadOnlyList<StopArrival> stopArrivals, IReadOnlyList<Note> arrivalNotes, IReadOnlyList<Note> rideNotes, IReadOnlyList<Note> diversions)> GetTimetableForStopKeysAsync(IEnumerable<int> stopIds, DateTimeOffset? date, CancellationToken? cancellationToken = null)
+    public async Task<(IReadOnlyList<StopArrival> stopArrivals, IReadOnlyList<Note> arrivalNotes, IReadOnlyList<Note> rideNotes, IReadOnlyList<Note> diversions)> GetTimetableForStopKeysAsync(IEnumerable<short> stopIds, DateTimeOffset? date, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<ArrivalsResponse>(ApiEndpoints.GetTimetableForStopKeys(stopIds, date), cancellationToken);
 
