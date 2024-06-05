@@ -17,9 +17,9 @@ public sealed partial class DeLijnClient : BaseClient
     /// <param name="validOn">Date on which all lines should be valid, is ignored if null</param>
     /// <returns>A list of line objects</returns>
     /// <exception cref="HttpRequestException"></exception>
-    public async Task<IReadOnlyList<Line>> GetLinesByEntityAsync(int entityId, DateTimeOffset? validOn = null, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<Line>> GetLinesByEntityAsync(short entityId, DateTimeOffset? validOn = null, CancellationToken? cancellationToken = null)
     {
-        var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetLinesByEntity((int)entityId, validOn), cancellationToken);
+        var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetLinesByEntity(entityId, validOn), cancellationToken);
 
         return responseBody.Lines;
     }
@@ -36,7 +36,7 @@ public sealed partial class DeLijnClient : BaseClient
         return responseBody.Lines;
     }
 
-    public async Task<IReadOnlyList<Line>> GetLinesByMunicipalityAsync(int municipalityId, CancellationToken? cancellationToken)
+    public async Task<IReadOnlyList<Line>> GetLinesByMunicipalityAsync(short municipalityId, CancellationToken? cancellationToken)
     {
         var responseBody = await GetAsync<LinesResponse>(ApiEndpoints.GetLinesByMunicipality(municipalityId), cancellationToken);
 

@@ -39,6 +39,7 @@ public sealed partial class DeLijnClient(DeLijnConfig _config, IHttpClientFactor
         return responseBody.Entities;
     }
 
+    // Bad Request
     public async Task<(IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults)> GetDiversionsAsync(DateTimeOffset? startDate = null, DateTimeOffset? endDate = null, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<DiversionsResponse>(ApiEndpoints.GetDiversions(startDate, endDate), cancellationToken);

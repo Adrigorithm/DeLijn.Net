@@ -20,14 +20,14 @@ public sealed partial class DeLijnClient : BaseClient
         return responseBody.Municipalities;
     }
 
-    public async Task<IReadOnlyList<Municipality>> GetMunicipalitiesByEntityAsync(int entityId, CancellationToken? cancellationToken = null)
+    public async Task<IReadOnlyList<Municipality>> GetMunicipalitiesByEntityAsync(short entityId, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<MunicipalitiesResponse>(ApiEndpoints.GetMunicipalitiesByEntity(entityId), cancellationToken);
 
         return responseBody.Municipalities;
     }
 
-    public async Task<Municipality> GetMunicipalityById(int id, CancellationToken? cancellationToken = null)
+    public async Task<Municipality> GetMunicipalityById(short id, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<Municipality>(ApiEndpoints.GetMunicipalityById(id), cancellationToken);
 
