@@ -72,7 +72,7 @@ public class EndpointTests
     [DataRow(4, 407043)] // Valid stop
     [DataRow(100, 407043)] // Invalid entity
     [DataRow(1, 123456789)] // Invalid stop
-    public async Task DeLijnClient_GetDiversionsByStopEndpoint_Test(short entityId, short stopId)
+    public async Task DeLijnClient_GetDiversionsByStopEndpoint_Test(short entityId, int stopId)
     {
         (IReadOnlyList<Diversion> diversions, IReadOnlyList<Diversion> faults) diversions;
 

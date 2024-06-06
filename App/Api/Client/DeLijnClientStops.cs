@@ -29,7 +29,7 @@ public sealed partial class DeLijnClient : BaseClient
         return responseBody.Stops;
     }
 
-    public async Task<Stop> GetStopAsync(short entityId, short stopId, DateTimeOffset? validOn, CancellationToken? cancellationToken = null)
+    public async Task<Stop> GetStopAsync(short entityId, int stopId, DateTimeOffset? validOn, CancellationToken? cancellationToken = null)
     {
         var responseBody = await GetAsync<Stop>(ApiEndpoints.GetStop(entityId, stopId, validOn), cancellationToken);
 

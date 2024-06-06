@@ -36,7 +36,7 @@ internal static class ApiEndpoints
     internal static string GetMunicipalitiesByEntity(short entityId) =>
         $"{GetAllEntities}/{entityId}/gemeenten";
 
-    internal static string GetStop(short entityId, short stopId, DateTimeOffset? validOnDate) =>
+    internal static string GetStop(short entityId, int stopId, DateTimeOffset? validOnDate) =>
         AddOptionalParameters($"{GetAllStops}/{entityId}/{stopId}", ("geldigOp", validOnDate.ToDeLijnDateTimeOffsetString(true)));
 
     internal static string GetStopsByMunicipality(short municipalityId) =>
@@ -62,19 +62,19 @@ internal static class ApiEndpoints
     internal static string GetMunicipalityById(short id) =>
         $"{GetAllMunicipalities}/{id}";
 
-    internal static string GetTimetableForStop(short entityId, short stopId, DateTimeOffset? date) =>
+    internal static string GetTimetableForStop(short entityId, int stopId, DateTimeOffset? date) =>
         AddOptionalParameters($"{GetAllStops}/{entityId}/{stopId}/dienstregelingen", ("datum", date.ToDeLijnDateOnlyString(true)));
 
-    internal static string GetLineDirectionsForStop(short entityId, short stopId, DateTimeOffset? validOnDate) =>
+    internal static string GetLineDirectionsForStop(short entityId, int stopId, DateTimeOffset? validOnDate) =>
         AddOptionalParameters($"{GetAllStops}/{entityId}/{stopId}/lijnrichtingen", ("geldigOp", validOnDate.ToDeLijnDateTimeOffsetString(true)));
 
-    internal static string GetDiversionsByStop(short entityId, short stopId, DateTimeOffset? date) =>
+    internal static string GetDiversionsByStop(short entityId, int stopId, DateTimeOffset? date) =>
         AddOptionalParameters($"{GetAllStops}/{entityId}/{stopId}/omleidingen", ("datum", date.ToDeLijnDateOnlyString(true)));
 
-    internal static string GetLiveDataForStop(short entityId, short stopId, short? maxResults) =>
+    internal static string GetLiveDataForStop(short entityId, int stopId, short? maxResults) =>
         AddOptionalParameters($"{GetAllStops}/{entityId}/{stopId}/real-time", ("maxAantalDoorkomsten", maxResults.ToString()));
 
-    internal static string GetDisruptionsByStop(short entityId, short stopId, DateTimeOffset? date) =>
+    internal static string GetDisruptionsByStop(short entityId, int stopId, DateTimeOffset? date) =>
         AddOptionalParameters($"{GetAllStops}/{entityId}/{stopId}/storingen", ("datum", date.ToDeLijnDateOnlyString(true)));
 
     internal static string GetStopPointsNearCoordinate(GeoCoordinate coordinate, short? maxResults, short? radius) =>
@@ -139,7 +139,7 @@ internal static class ApiEndpoints
         optionalParams = optionalParams.Where(kvp => kvp.paramValue is not null);
 
         if (optionalParams.Any())
-            return string.Empty;
+            return baseUri;
         else
         {
             var stringBuilder = new StringBuilder($"{baseUri}?");

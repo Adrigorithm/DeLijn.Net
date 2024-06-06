@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace DeLijn.Net.App.Api.Helpers.Converters;
 
-internal class StringIdConverter : JsonConverter<short>
+internal class StringIdInt16Converter : JsonConverter<short>
 {
     public override short Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
         Convert.ToInt16(reader.GetString());

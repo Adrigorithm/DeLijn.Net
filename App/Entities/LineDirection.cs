@@ -8,8 +8,8 @@ namespace DeLijn.Net.App.Entities;
 /// In theory there should be a lot more properties according to the documentation but the API doesn't expose these so they are not included for now.
 /// </summary>
 public record LineDirection(
-    [property: JsonPropertyName("entiteitnummer")][property: JsonConverter(typeof(StringIdConverter))] short EntityId,
-    [property: JsonPropertyName("lijnnummer")][property: JsonConverter(typeof(StringIdConverter))] short LineId,
+    [property: JsonPropertyName("entiteitnummer")][property: JsonConverter(typeof(StringIdInt16Converter))] short EntityId,
+    [property: JsonPropertyName("lijnnummer")][property: JsonConverter(typeof(StringIdInt16Converter))] short LineId,
     [property: JsonPropertyName("richting")][property: JsonConverter(typeof(DirectionConverter))] Direction Direction,
     [property: JsonPropertyName("omschrijving")] string Description
 );

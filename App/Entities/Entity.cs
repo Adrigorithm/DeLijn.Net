@@ -5,7 +5,7 @@ using DeLijn.Net.App.Entities.Response;
 namespace DeLijn.Net.App.Entities;
 
 public record Entity(
-    [property: JsonPropertyName("entiteitnummer")][property: JsonConverter(typeof(StringIdConverter))] short Id,
+    [property: JsonPropertyName("entiteitnummer")][property: JsonConverter(typeof(StringIdInt16Converter))] short Id,
     [property: JsonPropertyName("entiteitcode")] string Code,
     [property: JsonPropertyName("omschrijving")] string Description
 );
