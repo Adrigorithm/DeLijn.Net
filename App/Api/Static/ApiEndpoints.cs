@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using DeLijn.Net.App.Api.Helpers.Attributes;
 using DeLijn.Net.App.Api.Helpers.Extensions;
@@ -133,4 +134,24 @@ internal static class ApiEndpoints
     internal static string GetDisruptionsForLineDirection(short entityId, short lineId, Direction lineDirection, short driveId, DateTimeOffset? date) =>
         $"{GetAllLines}/{entityId}/{lineId}/lijnrichtingen/{lineDirection.ToTranslatedString()}/storingen?datum={date.ToDeLijnDateOnlyString(true)}";
 
+    private static string AddOptionalParameters(string baseUri, params IEnumerable<KeyValuePair<string, string?>> optionalParams)
+    {
+        optionalParams = optionalParams.Where(kvp => kvp.Value is not null);
+
+        if (optionalParams.Any())
+            return string.Empty;
+        else
+        {
+            var stringBuilder = new StringBuilder($"{baseUri}?");
+
+            stringBuilder.Append($"{optionalParams.ElementAt(0).Key}={optionalParams.ElementAt(0).Value}");
+
+            for (int i = 1; i < optionalParams.Count(); i++)
+            {
+                stringBuilder.Append($"&{optionalParams.ElementAt(i).Key}={optionalParams.ElementAt(i).Value}");
+            }
+
+            return stringBuilder.ToString();
+        }
+    }
 }
