@@ -3,9 +3,9 @@
 
 A C# DeLijn API library for dotnet core 8, featuring automatic ratelimiting, caching and parsing.
 
-
 ## Installation
 
+There is nothing yet, so there's nothing to install, but for future reference: 
 You will need to use [dotnet 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) to use this library.
 
 
@@ -20,9 +20,10 @@ You will need to use [dotnet 8](https://dotnet.microsoft.com/en-us/download/dotn
 Soon™
 
 ## Todo
-- [ ] Cover all endpoints
+- [ ] ~~Cover all endpoints~~
 - [ ] Use .NET Aspire
-
+- [ ] Delete the API endpoints
+- [ ] Scrape everything
 
 ## FAQ
 
@@ -36,4 +37,4 @@ No (upgrade to .net8).
 
 #### Are you ok?
 
-No, this API is the worst piece of junk I've come accross in years. While the beta version is not usuable at all, v1 is not much better. Almost all endpoints return shit that makes no sense or doesn't belong there at all. This goes from properties that always have the same value to links to other endpoints. There's also four or more ways to indicate something is missing or null (<not present>, null, [], "?"). This is just the surface. You ask me if I am OK? No I am not OK. In fact I am so not OK I want to post this README on LinkedIn and shit on DeLijn which I won't do but you get the idea.
+No, this API is the worst piece of junk I've come accross in years. While the beta version is not usuable at all, v1 is not much better. Almost all endpoints return shit that makes no sense or doesn't belong there at all. This goes from properties that always have the same value to links to other endpoints. There's also four or more ways to indicate something is missing or null (<not present>, null, [], "?"). This is just the surface. You ask me if I am OK? No I am not OK. In fact I am so not OK I want to post this README on LinkedIn and shit on DeLijn which I won't do but you get the idea. I shall just scrape the website - in moderation.
