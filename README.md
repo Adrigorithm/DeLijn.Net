@@ -1,3 +1,5 @@
+# ARCHIVED
+Please do not use this. I will first create the library in Go, after that I might port it to .NET if there's demand.
 
 # DeLijn.Net
 
